@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <center>
+        <h1>Calci App</h1>
+        <form onsubmit="find(event)">
+            <input type="number" step="any" placeholder="Enter the Number" id="num">
+            <br/><br/>
+            <input type="submit" value="Square" id="sq"/>
+            <input type="submit" value="Cube" id="cb"/>
+            <input type="submit" value="Square Root" id="sqrt"/>
+        </form>
+        <h2 id="msg"></h2>
+        <script>
+            function find(event) {
+                event.preventDefault();
+                let num = document.getElementById("num");
+                let msg = document.getElementById("msg");
+                let operation = event.submitter.value;
+                let n = parseFloat(num.value);
+
+                if (num.value === "") {
+                    alert("You did not enter a number");
+                    msg.innerHTML = "";
+                    num.focus();
+                    return;
+                }
+
+                let result;
+
+                if (operation === "Square") {
+                    result = n * n;
+                    msg.innerHTML = "Square: " + result.toFixed(2);
+                } else if (operation === "Cube") {
+                    result = n * n * n;
+                    msg.innerHTML = "Cube: " + result.toFixed(2);
+                } else if (operation === "Square Root") {
+                    if (n < 0) {
+                        alert("Square root is not defined for negative numbers");
+                        msg.innerHTML = "";
+                        num.focus();
+                        return;
+                    }
+                    result = Math.sqrt(n);
+                    msg.innerHTML = "Square Root: " + result.toFixed(2);
+                }
+            }
+        </script>
+    </center>
+</body>
+</html>
